@@ -16,7 +16,14 @@ const plotPerson = ({name, roles, phone, email}) => (
 const fetchPersonsFromAPI = async () => {
     const response = await fetch('https://my-json-server.typicode.com/horizon-code-academy/fake-data-api/users');
     const data = await response.json();
+    localStorage.setItem("persons", JSON.stringify(data));
+    //document.querySelector('.row').innerHTML = data.map(person => plotPerson(person)).join('');
+};
+
+const fetchPersonsFromLocalStorage = () => {
+    const data = JSON.parse(localStorage.getItem("persons"));
     document.querySelector('.row').innerHTML = data.map(person => plotPerson(person)).join('');
 };
 
-fetchPersonsFromAPI();
+fetchPersonsFromLocalStorage();
+//fetchPersonsFromAPI();
