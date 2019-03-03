@@ -69,7 +69,7 @@ fetchPersonsFromLocalStorage();
 const saveNewContact = () => {
   const persons = JSON.parse(localStorage.getItem("persons")) || [];
   persons.push({
-    id: persons[persons.length - 1].id + 1,
+    id: persons.length !== 0 ? persons[persons.length - 1].id + 1 : 1,
     name: document.querySelector("#name").value,
     phone: document.querySelector("#phone").value,
     email: document.querySelector("#email").value
