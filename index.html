@@ -11,6 +11,12 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
   </head>
   <body>
@@ -19,9 +25,125 @@
       <div class="row">
         Loading...
       </div>
-      <button class="btn btn-success mt-4">Ajouter</button>
+      <button
+        type="button"
+        class="btn btn-success mt-4"
+        data-toggle="modal"
+        data-target="#addContactModal"
+      >
+        Ajouter
+      </button>
     </div>
-
+    <!-- Modal add -->
+    <div
+      class="modal fade"
+      id="addContactModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="addContactModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-success">
+            <h5 class="modal-title" id="addContactModal">Add contact</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <label for="name">
+              Name:
+              <input id="name" class="form-control" />
+            </label>
+            <label for="phone">
+              Phone:
+              <input id="phone" type="tel" class="form-control" />
+            </label>
+            <label for="email">
+              Mail:
+              <input id="email" type="email" class="form-control" />
+            </label>
+            <label for="roles">
+              Roles:
+              <input id="roles" class="form-control" />
+            </label>
+          </div>
+          <div class="modal-footer">
+            <button type="reset" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+            <button
+              class="btn btn-primary"
+              data-dismiss="modal"
+              onclick="saveNewContact()"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal edit -->
+    <div
+      class="modal fade"
+      id="editContactModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="editContactModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-warning">
+            <h5 class="modal-title" id="editContactModalTitle">Update contact</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <label for="name">
+              Name:
+              <input id="name" class="form-control" />
+            </label>
+            <label for="phone">
+              Phone:
+              <input id="phone" type="tel" class="form-control" />
+            </label>
+            <label for="email">
+              Mail:
+              <input id="email" type="email" class="form-control" />
+            </label>
+            <label for="roles">
+              Roles:
+              <input id="roles" class="form-control" />
+            </label>
+          </div>
+          <div class="modal-footer">
+            <button type="reset" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+            <button
+              class="btn btn-warning"
+              data-dismiss="modal"
+              onclick="updateContact()"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
