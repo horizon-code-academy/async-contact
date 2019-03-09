@@ -71,7 +71,10 @@
             </label>
             <label for="roles">
               Roles:
-              <input id="roles" class="form-control" />
+              <input type="checkbox" name="roles" value="advisor" class="form-control" /> advisor
+              <input type="checkbox" name="roles" value="trainer" class="form-control" /> Trainer
+              <input type="checkbox" name="roles" value="assistant" class="form-control" /> Assistant
+              <input type="checkbox" name="roles" value="student" class="form-control" /> Student
             </label>
           </div>
           <div class="modal-footer">
@@ -112,21 +115,25 @@
             </button>
           </div>
           <div class="modal-body">
-            <label for="name">
+            <input hidden type="hidden" id="idEdit" />
+            <label for="nameEdit">
               Name:
-              <input id="name" class="form-control" />
+              <input id="nameEdit" class="form-control" />
             </label>
-            <label for="phone">
+            <label for="phoneEdit">
               Phone:
-              <input id="phone" type="tel" class="form-control" />
+              <input id="phoneEdit" type="tel" class="form-control" />
             </label>
-            <label for="email">
+            <label for="emailEdit">
               Mail:
-              <input id="email" type="email" class="form-control" />
+              <input id="emailEdit" type="email" class="form-control" />
             </label>
-            <label for="roles">
+            <label for="rolesEdit">
               Roles:
-              <input id="roles" class="form-control" />
+              <input type="checkbox" name="roles" value="advisor" class="role form-control"/> Advisor
+              <input type="checkbox" name="roles" value="trainer" class="role form-control" /> Trainer
+              <input type="checkbox" name="roles" value="assistant" class="role form-control" /> Assistant
+              <input type="checkbox" name="roles" value="student" class="role form-control" /> Student
             </label>
           </div>
           <div class="modal-footer">

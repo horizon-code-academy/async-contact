@@ -57,7 +57,6 @@ const fetchPersonsFromLocalStorage = () => {
   document.querySelector(".row").innerHTML = data
     ? data.map(person => plotPerson(person)).join("")
     : "No data...";
-  console.table(data);
 };
 
 fetchPersonsFromLocalStorage();
@@ -68,6 +67,10 @@ fetchPersonsFromLocalStorage();
  */
 const saveNewContact = () => {
   const persons = JSON.parse(localStorage.getItem("persons")) || [];
+  const roles = [...document.getElementsByName("roles:checked")].map(
+    item => item.value
+  );
+  console.log(roles);
   persons.push({
     id: persons.length !== 0 ? persons[persons.length - 1].id + 1 : 1,
     name: document.querySelector("#name").value,
@@ -77,12 +80,56 @@ const saveNewContact = () => {
   });
   localStorage.setItem("persons", JSON.stringify(persons));
   fetchPersonsFromLocalStorage();
+  resetForms();
 };
 
 const deleteContactFromLocalStorage = id => {
   console.warn(`person n°${id} deleted.`);
   let persons = JSON.parse(localStorage.getItem("persons")) || [];
-  persons = persons.filter(person => person.id !== id);
+  persons = persons.filter(person => person.id != id);
   localStorage.setItem("persons", JSON.stringify(persons));
   fetchPersonsFromLocalStorage();
 };
+
+const showUpdateModal = id => {
+  resetForms();
+  let persons = JSON.parse(localStorage.getItem("persons")) || [];
+  const person = persons.filter(person => person.id == id)[0];
+  document.querySelector("#nameEdit").value = person.name;
+  document.querySelector("#phoneEdit").value = person.phone;
+  document.querySelector("#emailEdit").value = person.email;
+  document.querySelector("#idEdit").value = person.id;
+  // roles
+};
+
+function resetForms() {
+  document.querySelector("#name").value = "";
+  document.querySelector("#phone").value = "";
+  document.querySelector("#email").value = "";
+  document.querySelector("#idEdit").value = "";
+  document.querySelector("#nameEdit").value = "";
+  document.querySelector("#phoneEdit").value = "";
+  document.querySelector("#emailEdit").value = "";
+  //document.querySelector("role").value = "";
+}
+
+function updateContact() {
+  let persons = JSON.parse(localStorage.getItem("persons")) || [];
+  console.table(persons);
+  for (let i = 0; i < persons.length; i += 1) {
+    if (persons[i].id === parseInt(document.querySelector("#idEdit").value)) {
+      console.log(document.querySelector("#phoneEdit").value);
+      persons[i] = {
+        id: parseInt(document.querySelector("#idEdit").value),
+        name: document.querySelector("#nameEdit").value,
+        phone: document.querySelector("#phoneEdit").value,
+        email: document.querySelector("#emailEdit").value
+        /*document.querySelector("role").value,*/
+      };
+      console.log(persons[i]);
+    }
+  }
+  console.table(persons);
+  localStorage.setItem("persons", JSON.stringify(persons));
+  fetchPersonsFromLocalStorage();
+}
